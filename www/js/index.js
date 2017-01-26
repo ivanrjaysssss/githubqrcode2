@@ -5,7 +5,12 @@ function init() {
     document.querySelector("#startScan").addEventListener("touchend", startScan, false);
     resultDiv = document.querySelector("#results");
 }
-
+function save_code(){
+  //save
+  var modalbutton1=document.getElementById("close");
+  modalbutton1.click();
+  startScan();
+}
 function startScan() {
 
     cordova.plugins.barcodeScanner.scan(

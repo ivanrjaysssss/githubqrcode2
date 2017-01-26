@@ -14,6 +14,11 @@ function startScan() {
             "Format: " + result.format + "<br/>" +
             "Cancelled: " + result.cancelled;
             resultDiv.innerHTML = s;
+
+            var modalbutton=document.getElementById("modal1");
+            modalbutton.click();
+
+
         }, 
         function (error) {
             alert("Scanning failed: " + error);

@@ -102,11 +102,8 @@ desired effect
 
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
-                  <a href="index.html" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat" onclick="sign_out();">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -132,8 +129,6 @@ desired effect
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Home</span></a></li>
 
-        <li><a href="view_list.html"><i class="fa fa-link"></i> <span>List</span></a></li>
-		<li><a href="about_us.html"><i class="fa fa-link"></i> <span>About us</span></a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>
@@ -153,20 +148,58 @@ desired effect
         <!--<li class="active">Here</li> -->
       </ol>
     </section>
-
     <!-- Main content -->
     <section class="content">
-
       <!-- Your Page Content Here -->
-
 		<tr>
 			<td>
                 <button  class="btn btn-block btn-primary btn-lg" id="startScan">Start Scan</button><br />
-                <a href="view_list.html"> <button type="button" class="btn btn-block btn-info btn-lg">View List</button></a>
             </td>
 		</tr>
     </section>
     <!-- /.content -->
+    <!-- Testing-->
+    <script type="text/javascript">
+
+    function submit1(){
+      var sid = document.getElementById("StudentID").value;
+
+    $.ajax({
+	url: 'http://localhost/github/qrcscanner/home/updateattendance',
+	type: 'POST',
+	data: {id_number: sid,teacher_id:localStorage.teacher_id },
+	success: function(response) {
+                  console.log(response);
+	}
+    });
+    }
+    </script>
+
+   <script>
+        document.write("Your id is: "+localStorage.teacher_id);
+        if(localStorage.teacher_id === undefined){
+          alert("You need to login first!");
+          window.location.href="index.html";
+        }
+    </script>
+
+    <script>
+        function sign_out(){
+            localStorage.clear();
+            window.location.href="index.html";
+        }
+    </script>
+
+
+    <center>
+        <input type="text" name="id_number" id="StudentID" placeholder="id number" required/>
+        <input type="submit" onclick="submit1();" />
+
+
+    </center>
+
+
+
   </div>
   <!-- /.content-wrapper -->
 
@@ -174,10 +207,10 @@ desired effect
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+        Live better now.
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017 <a href="#">School</a>.</strong> All rights reserved.
   </footer>
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
